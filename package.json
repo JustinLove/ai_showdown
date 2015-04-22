@@ -1,0 +1,11 @@
+{
+  "name": "ai_showdown",
+  "version": "0.0.0",
+  "devDependencies": {
+    "dateformat": "~1.0.7-1.2.3",
+    "grunt": "~0.4.2",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "prompt": "^0.2.13"
+  }
+}
