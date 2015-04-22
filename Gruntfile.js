@@ -34,6 +34,11 @@ module.exports = function(grunt) {
             dest: 'ai/vanilla/',
           },
         ],
+        options: {
+          process: function(contents, path) {
+            return JSON.stringify(JSON.parse(contents), null, 2)
+          }
+        },
       },
     },
     clean: ['pa', 'ai/vanilla', modPath],
