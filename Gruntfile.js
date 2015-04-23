@@ -1,3 +1,4 @@
+var Path = require('path')
 var spec = require('./lib/spec')
 var prompt = require('prompt')
 prompt.start()
@@ -10,9 +11,9 @@ var ais = {
   ais: [
     {
       path: 'ai/vanilla',
-      rule_postfix: '',
+      rule_postfix: '_Default',
       file_postfix: '',
-      name_prefix: '',
+      name_prefix: 'Default - ',
       unittype: 'Bot',
     },
     {
@@ -67,7 +68,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('platoons', 'Process unit files into the mod', function() {
+  grunt.registerTask('platoon_templates', '', function() {
     out = {}
     ais.ais.forEach(function(ai) {
       platoons = grunt.file.readJSON(ai.path + '/platoon_templates.json').platoon_templates
@@ -77,6 +78,24 @@ module.exports = function(grunt) {
     })
     grunt.file.write('pa/ai/platoon_templates.json',
                      JSON.stringify({platoon_templates: out}, null, 2))
+  })
+
+  grunt.registerTask('platoon_builds', '', function() {
+    ais.ais.forEach(function(ai) {
+      var files = grunt.file.expand([
+        ai.path + '/platoon_builds/*'
+      ])
+      files.forEach(function(path) {
+        builds = grunt.file.readJSON(path)
+        builds.build_list.forEach(function(rule) {
+          rule.name = ai.name_prefix + rule.name
+          rule.to_build = rule.to_build + ai.rule_postfix
+        })
+        var base = Path.basename(path, '.json')
+        var dest = 'pa/ai/platoon_builds/' + base + ai.file_postfix + '.json'
+        grunt.file.write(dest, JSON.stringify(builds, null, 2))
+      })
+    })
   })
 
   // Default task(s).
