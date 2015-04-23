@@ -146,6 +146,14 @@ module.exports = function(grunt) {
     })
   })
 
+  grunt.registerTask('commander_manager', '', function() {
+    var commanders = ais.ais.map(function(ai) { return ai.commander })
+    var manager = grunt.file.read(media + 'server-script/lobby/commander_manager.js')
+    // implicitly to-end-of-line
+    manager = manager.replace(/(var default_commanders = ).*/, "$1" + JSON.stringify(commanders))
+    grunt.file.write('server-script/lobby/commander_manager.js', manager)
+  })
+
   grunt.registerTask('build', ['ai_unit_map', 'platoon_templates', 'builds']);
   grunt.registerTask('default', ['build']);
 
