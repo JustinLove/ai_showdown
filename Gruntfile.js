@@ -90,6 +90,14 @@ module.exports = function(grunt) {
         builds.build_list.forEach(function(rule) {
           rule.name = ai.name_prefix + rule.name
           rule.to_build = rule.to_build + ai.rule_postfix
+          rule.build_conditions.forEach(function(cond) {
+            cond.unshift({
+              "test_type":"UnitCount",
+              "unit_type_string0":"Commander & " + ai.unittype,
+              "compare0":">=",
+              "value0":1
+            })
+          })
         })
         var base = Path.basename(path, '.json')
         var dest = 'pa/ai/platoon_builds/' + base + ai.file_postfix + '.json'
