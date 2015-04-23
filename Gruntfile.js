@@ -14,14 +14,21 @@ var ais = {
       rule_postfix: '_Default',
       file_postfix: '',
       name_prefix: 'Default - ',
-      unittype: 'Bot',
+      unittype: 'Custom1',
     },
     {
       path: 'ai/quellar',
       rule_postfix: '_Quellar',
       file_postfix: '_Quellar',
       name_prefix: 'Quellar - ',
-      unittype: 'Tank',
+      unittype: 'Custom2',
+    },
+    {
+      path: 'ai/s03g',
+      rule_postfix: '_s03g',
+      file_postfix: '_s03g',
+      name_prefix: 's03g - ',
+      unittype: 'Custom3',
     },
   ]
 }
@@ -123,8 +130,9 @@ module.exports = function(grunt) {
     })
   })
 
-  // Default task(s).
-  grunt.registerTask('default', ['proc', 'copy:mod']);
+  grunt.registerTask('build', ['ai_unit_map', 'platoon_templates', 'builds']);
+  grunt.registerTask('default', ['build']);
 
+  // notable others: copy:vanilla, copy:mod
 };
 
