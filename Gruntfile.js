@@ -68,6 +68,18 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
+  grunt.registerTask('ai_unit_map', '', function() {
+    out = {}
+    ais.ais.forEach(function(ai) {
+      map = grunt.file.readJSON(ai.path + '/ai_unit_map.json').unit_map
+      Object.keys(map).forEach(function(name) {
+        out[name] = map[name]
+      })
+    })
+    grunt.file.write('pa/ai/ai_unit_map.json',
+                     JSON.stringify({unit_map: out}, null, 2))
+  })
+
   grunt.registerTask('platoon_templates', '', function() {
     out = {}
     ais.ais.forEach(function(ai) {
