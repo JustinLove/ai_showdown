@@ -15,6 +15,7 @@ var ais = {
       file_postfix: '',
       name_prefix: 'Default - ',
       unittype: 'Custom1',
+      commander: 'ProgenitorCommander',
     },
     {
       path: 'ai/quellar',
@@ -22,6 +23,7 @@ var ais = {
       file_postfix: '_Quellar',
       name_prefix: 'Quellar - ',
       unittype: 'Custom2',
+      commander: 'AlphaCommander',
     },
     {
       path: 'ai/s03g',
@@ -29,6 +31,7 @@ var ais = {
       file_postfix: '_s03g',
       name_prefix: 's03g - ',
       unittype: 'Custom3',
+      commander: 'ThetaCommander',
     },
   ]
 }
@@ -127,6 +130,19 @@ module.exports = function(grunt) {
         var dest = 'pa/ai/' + dir + '/' + base + ai.file_postfix + '.json'
         grunt.file.write(dest, JSON.stringify(builds, null, 2))
       })
+    })
+  })
+
+  grunt.registerTask('commanders', '', function() {
+    var base = grunt.file.readJSON(media + 'pa/units/commanders/base_commander/base_commander.json')
+    var commanders = require(media + 'server-script/lobby/commander_table').data
+    ais.ais.forEach(function(ai) {
+      var specPath = commanders.filter(function(com) {
+        return com.ObjectName == ai.commander
+      })[0].UnitSpec
+      var spec = grunt.file.readJSON(media + specPath)
+      spec.unit_types = base.unit_types.concat(['UNITTYPE_' + ai.unittype])
+      grunt.file.write('.' + specPath, JSON.stringify(spec, null, 2))
     })
   })
 
