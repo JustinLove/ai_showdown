@@ -8,6 +8,7 @@ var stream = 'stable'
 var media = require('./lib/path').media(stream)
 
 var ais = {
+  ai_config: 'ai/vanilla/ai_config.json',
   ais: [
     {
       path: 'ai/vanilla',
@@ -40,6 +41,14 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     copy: {
+      ai_config: {
+        files: [
+          {
+            src: ais.ai_config,
+            dest: 'pa/ai/ai_config.json',
+          },
+        ],
+      },
       mod: {
         files: [
           {
