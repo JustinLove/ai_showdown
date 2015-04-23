@@ -86,7 +86,7 @@ module.exports = function(grunt) {
         ai.path + '/platoon_builds/*'
       ])
       files.forEach(function(path) {
-        builds = grunt.file.readJSON(path)
+        var builds = grunt.file.readJSON(path)
         builds.build_list.forEach(function(rule) {
           rule.name = ai.name_prefix + rule.name
           rule.to_build = rule.to_build + ai.rule_postfix
@@ -101,6 +101,33 @@ module.exports = function(grunt) {
         })
         var base = Path.basename(path, '.json')
         var dest = 'pa/ai/platoon_builds/' + base + ai.file_postfix + '.json'
+        grunt.file.write(dest, JSON.stringify(builds, null, 2))
+      })
+    })
+  })
+
+  grunt.registerTask('other_builds', '', function() {
+    ais.ais.forEach(function(ai) {
+      var files = grunt.file.expand([
+        ai.path + '/fabber_builds/*',
+        ai.path + '/factory_builds/*',
+      ])
+      files.forEach(function(path) {
+        var builds = grunt.file.readJSON(path)
+        builds.build_list.forEach(function(rule) {
+          rule.name = ai.name_prefix + rule.name
+          rule.build_conditions.forEach(function(cond) {
+            cond.unshift({
+              "test_type":"UnitCount",
+              "unit_type_string0":"Commander & " + ai.unittype,
+              "compare0":">=",
+              "value0":1
+            })
+          })
+        })
+        var base = Path.basename(path, '.json')
+        var dir = Path.basename(Path.dirname(path))
+        var dest = 'pa/ai/' + dir + '/' + base + ai.file_postfix + '.json'
         grunt.file.write(dest, JSON.stringify(builds, null, 2))
       })
     })
