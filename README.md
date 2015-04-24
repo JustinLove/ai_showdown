@@ -8,6 +8,8 @@ The `ais` object near the top of `Gruntfile.js` specifies paths and attributes f
 
 Tasks which copy or use files from the base game need a path to the media directory.  There are some rough rules that try to guess this path, but the `media` variable may need to be overriden with an explicit path.
 
+Because default tasks are specialized to the default commander attribute, AIs must be complete.  If you rely on AI files from the base game, copy them into your AI's working directory.
+
 ## Running
 
 `package.json` lists dependencies, but you'll need to run `npm install` to download them.
