@@ -87,7 +87,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('ai_unit_map', '', function() {
+  grunt.registerTask('ai_unit_map', 'Mashup the units maps', function() {
     out = {}
     ais.ais.forEach(function(ai) {
       map = grunt.file.readJSON(ai.path + '/ai_unit_map.json').unit_map
@@ -99,7 +99,7 @@ module.exports = function(grunt) {
                      JSON.stringify({unit_map: out}, null, 2))
   })
 
-  grunt.registerTask('platoon_templates', '', function() {
+  grunt.registerTask('platoon_templates', 'Rename templates and combine into one file', function() {
     out = {}
     ais.ais.forEach(function(ai) {
       platoons = grunt.file.readJSON(ai.path + '/platoon_templates.json').platoon_templates
@@ -111,7 +111,7 @@ module.exports = function(grunt) {
                      JSON.stringify({platoon_templates: out}, null, 2))
   })
 
-  grunt.registerTask('builds', '', function() {
+  grunt.registerTask('builds', 'Rename builds and copy files', function() {
     ais.ais.forEach(function(ai) {
       var files = grunt.file.expand([
         ai.path + '/platoon_builds/*',
@@ -142,7 +142,7 @@ module.exports = function(grunt) {
     })
   })
 
-  grunt.registerTask('commanders', '', function() {
+  grunt.registerTask('commanders', 'Add unittype to commanders, requires media path', function() {
     var base = grunt.file.readJSON(media + 'pa/units/commanders/base_commander/base_commander.json')
     var commanders = require(media + 'server-script/lobby/commander_table').data
     ais.ais.forEach(function(ai) {
@@ -155,7 +155,7 @@ module.exports = function(grunt) {
     })
   })
 
-  grunt.registerTask('commander_manager', '', function() {
+  grunt.registerTask('commander_manager', 'Write server script file with commander list, requires media path and must be put in place by user', function() {
     var commanders = ais.ais.map(function(ai) { return ai.commander })
     var manager = grunt.file.read(media + 'server-script/lobby/commander_manager.js')
     // implicitly to-end-of-line
@@ -163,7 +163,16 @@ module.exports = function(grunt) {
     grunt.file.write('server-script/lobby/commander_manager.js', manager)
   })
 
-  grunt.registerTask('build', ['ai_unit_map', 'platoon_templates', 'builds']);
+  grunt.registerTask('build', [
+    'copy:ai_config',
+    'ai_unit_map',
+    'platoon_templates',
+    'builds',
+
+    // requires media path:
+    'commanders',
+    'commander_manager',
+  ]);
   grunt.registerTask('default', ['build']);
 
   // notable others: copy:vanilla, copy:mod
