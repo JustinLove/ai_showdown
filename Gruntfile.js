@@ -2,7 +2,6 @@ var Path = require('path')
 var prompt = require('prompt')
 prompt.start()
 
-var modPath = '../../server_mods/com.wondible.pa.ai_showdown/'
 var stream = 'stable'
 var media = require('./lib/path').media(stream)
 
@@ -10,6 +9,7 @@ var ais = {
   ai_config: 'ai/vanilla/ai_config.json',
   ais: [
     {
+      name: 'Vanilla (Default)',
       path: 'ai/vanilla',
       rule_postfix: '_Default',
       file_postfix: '',
@@ -18,6 +18,7 @@ var ais = {
       commander: 'ProgenitorCommander',
     },
     {
+      name: 'Quellar',
       path: 'ai/quellar',
       rule_postfix: '_Quellar',
       file_postfix: '_Quellar',
@@ -26,6 +27,7 @@ var ais = {
       commander: 'AlphaCommander',
     },
     {
+      name: 's03g',
       path: 'ai/s03g',
       rule_postfix: '_s03g',
       file_postfix: '_s03g',
@@ -35,6 +37,9 @@ var ais = {
     },
   ]
 }
+
+var identifier = 'com.wondible.pa.ai_showdown.' + ais.ais.map(function(ai) {return ai.rule_postfix}).join('')
+var modPath = '../../server_mods/' + identifier + '/'
 
 module.exports = function(grunt) {
   // Project configuration.
@@ -52,7 +57,6 @@ module.exports = function(grunt) {
         files: [
           {
             src: [
-              'modinfo.json',
               'LICENSE.txt',
               'README.md',
               'CHANGELOG.md',
@@ -62,6 +66,24 @@ module.exports = function(grunt) {
             dest: modPath,
           },
         ],
+      },
+      modinfo: {
+        files: [
+          {
+            src: ['modinfo.json'],
+            dest: modPath,
+          },
+        ],
+        options: {
+          process: function(content, srcpath) {
+            var info = JSON.parse(content)
+            info.display_name = 'AI Showdown: ' + ais.ais.map(function(ai) {return ai.name}).join(' vs. ')
+            info.date = require('dateformat')(new Date(), 'yyyy/mm/dd')
+            info.identifier = identifier
+            console.log(info.display_name, info.identifier, info.version, info.date)
+            return JSON.stringify(info, null, 2)
+          }
+        }
       },
       vanilla: {
         files: [
@@ -79,7 +101,7 @@ module.exports = function(grunt) {
         },
       },
     },
-    clean: ['pa', 'ai/vanilla', modPath],
+    clean: ['pa', 'server-script', 'ai/vanilla', modPath],
     platoons: {},
   });
 
@@ -174,6 +196,8 @@ module.exports = function(grunt) {
   ]);
   grunt.registerTask('default', ['build']);
 
-  // notable others: copy:vanilla, copy:mod
+  grunt.registerTask('mod', ['copy:modinfo', 'copy:mod'])
+
+  // notable others: copy:vanilla
 };
 

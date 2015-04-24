@@ -24,6 +24,10 @@ PA will upload **all files** in the mod directory, including `node_modules` and 
 - `commander_manager` - Write server script file with commander list, requires media path and must be put in place by user
 - `build` - above tasks
 
-- `copy:vanilla` - copy the vanilla AI from media path into working directory
 - `copy:mod` - copy the mod files into `server_mods`
+- `copy:modinfo` - rewrite modinfo with AI specifics and put into `server_mods`
+- `mod` - above two tasks
+
+- `copy:vanilla` - copy the vanilla AI from media path into working directory
+
 - `default`: `build`
