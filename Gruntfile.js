@@ -1,5 +1,4 @@
 var Path = require('path')
-var spec = require('./lib/spec')
 var prompt = require('prompt')
 prompt.start()
 
