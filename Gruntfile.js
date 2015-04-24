@@ -90,7 +90,7 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: media + 'pa/ai/',
-            src: '**',
+            src: ['**', '!neural_networks/**'],
             dest: 'ai/vanilla/',
           },
         ],
