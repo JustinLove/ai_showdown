@@ -46,6 +46,9 @@ module.exports = function(grunt) {
           process: function(content, srcpath) {
             var info = JSON.parse(content)
             info.display_name = 'AI Showdown: ' + ais.ais.map(function(ai) {return ai.name}).join(' vs. ')
+            info.description = ais.ais.map(function(ai) {
+              return ai.name + ': ' + ai.commander
+            }).join(', ')
             info.date = require('dateformat')(new Date(), 'yyyy/mm/dd')
             info.identifier = identifier
             console.log(info.display_name, info.identifier, info.version, info.date)
