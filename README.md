@@ -4,7 +4,7 @@ Mashup multiple AI configs so they can be played at the same time.
 
 ## Configuration
 
-The `ais` object near the top of `Gruntfile.js` specifies paths and attributes for each AI.  The example configuration assumes files are stored in an ai directory with one subdirectory for each AI.
+Config file specifies paths and attributes for each AI.  The example configuration assumes the copy:vanilla task is run to make a local copy of the base AI, and custom AIs are in server_mods.
 
 Tasks which copy or use files from the base game need a path to the media directory.  There are some rough rules that try to guess this path, but the `media` variable may need to be overriden with an explicit path.
 

@@ -5,44 +5,11 @@ prompt.start()
 var stream = 'stable'
 var media = require('./lib/path').media(stream)
 
-var ais = {
-  ai_config: 'ai/vanilla/ai_config.json',
-  ais: [
-    {
-      name: 'Vanilla (Default)',
-      path: 'ai/vanilla',
-      rule_postfix: '_Default',
-      file_postfix: '',
-      name_prefix: 'Default - ',
-      unittype: 'Custom1',
-      commander: 'ProgenitorCommander',
-    },
-    {
-      name: 'Quellar',
-      path: '../../server_mods/com.pa.quitch.qQuellerAI/pa/ai',
-      rule_postfix: '_Quellar',
-      file_postfix: '_Quellar',
-      name_prefix: 'Quellar - ',
-      unittype: 'Custom2',
-      commander: 'AlphaCommander',
-    },
-    {
-      name: 's03g',
-      path: '../../server_mods/com.s03g.AI/pa/ai',
-      base_path: media + 'pa/ai',
-      rule_postfix: '_s03g',
-      file_postfix: '_s03g',
-      name_prefix: 's03g - ',
-      unittype: 'Custom3',
-      commander: 'ThetaCommander',
-    },
-  ]
-}
-
-var identifier = 'com.wondible.pa.ai_showdown.' + ais.ais.map(function(ai) {return ai.rule_postfix}).join('')
-var modPath = '../../server_mods/' + identifier + '/'
-
 module.exports = function(grunt) {
+  var ais = grunt.file.readJSON('ais.json')
+  var identifier = 'com.wondible.pa.ai_showdown.' + ais.ais.map(function(ai) {return ai.rule_postfix}).join('')
+  var modPath = '../../server_mods/' + identifier + '/'
+
   // Project configuration.
   grunt.initConfig({
     copy: {
