@@ -14,6 +14,8 @@ Because default tasks are specialized to the default commander attribute, AIs mu
 
 ### Quick Start
 
+Uses on [Node](https://nodejs.org/) with NPM and the [Grunt](http://gruntjs.com/) task runner, which needs it's command line utility installed with `npm install grunt-cli -g`
+
 - Put this project under a sibling of the `server_mods` directory e.g. `.../Planetary Annihilation/server_mod_dev/ai_showdown`
 - Run `npm install`
 - Copy `ais.json.example` to `ais.json` and edit for the AIs you want to mashup.
