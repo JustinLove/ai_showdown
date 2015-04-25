@@ -30,6 +30,7 @@ var ais = {
     {
       name: 's03g',
       path: server_mods + 'com.s03g.AI/pa/ai',
+      base_path: media + 'pa/ai',
       rule_postfix: '_s03g',
       file_postfix: '_s03g',
       name_prefix: 's03g - ',
@@ -165,7 +166,12 @@ module.exports = function(grunt) {
   }
 
   grunt.registerTask('builds', 'Rename builds and copy files', function() {
-    ais.ais.forEach(function(ai) {processBuilds(ai.path, ai)})
+    ais.ais.forEach(function(ai) {
+      if (ai.base_path) {
+        processBuilds(ai.base_path, ai)
+      }
+      processBuilds(ai.path, ai)
+    })
   })
 
   grunt.registerTask('commanders', 'Add unittype to commanders, requires media path', function() {
