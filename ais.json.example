@@ -11,11 +11,11 @@
       "commander": "ProgenitorCommander"
     },
     {
-      "name": "Quellar",
+      "name": "Queller",
       "path": "../../server_mods/com.pa.quitch.qQuellerAI/pa/ai",
-      "rule_postfix": "_Quellar",
-      "file_postfix": "_Quellar",
-      "name_prefix": "Quellar - ",
+      "rule_postfix": "_Queller",
+      "file_postfix": "_Queller",
+      "name_prefix": "Queller - ",
       "unittype": "Custom2",
       "commander": "AlphaCommander"
     },
