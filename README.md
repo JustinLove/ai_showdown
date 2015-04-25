@@ -4,7 +4,7 @@ Mashup multiple AI configs so they can be played at the same time.
 
 ## Configuration
 
-Config file specifies paths and attributes for each AI.  The example configuration assumes the copy:vanilla task is run to make a local copy of the base AI, and custom AIs are in server_mods.
+ais.json file specifies paths and attributes for each AI.  The example configuration assumes the copy:vanilla task is run to make a local copy of the base AI, and custom AIs are in server_mods.
 
 Tasks which copy or use files from the base game need a path to the media directory.  There are some rough rules that try to guess this path, but the `media` variable may need to be overriden with an explicit path.
 
