@@ -17,6 +17,7 @@ Because default tasks are specialized to the default commander attribute, AIs mu
 - Put this project under a sibling of the `server_mods` directory e.g. `.../Planetary Annihilation/server_mod_dev/ai_showdown`
 - Run `npm install`
 - Copy `ais.json.example` to `ais.json` and edit for the AIs you want to mashup.
+- run `grunt media_check` to see if the default rules guessed your PA path correctly
 - If you are using any files from the vanilla AI, run `grunt copy:vanilla`
 - `grunt build` (also the default task) will mashup files into the local directory
 - `grunt mod` will copy the local files into a runnable server mod.
@@ -44,6 +45,7 @@ Example config depends on media directory for vanilla AI, files as well as comma
 - `copy:modinfo` - rewrite modinfo with AI specifics and put into `server_mods`
 - `mod` - above two tasks
 
+- `media_check` - test if the PA media path is correctly configured
 - `copy:vanilla` - copy the vanilla AI from media path into ai working directory
 
 - `default`: `build`
