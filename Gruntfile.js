@@ -133,35 +133,39 @@ module.exports = function(grunt) {
                      JSON.stringify({platoon_templates: out}, null, 2))
   })
 
-  grunt.registerTask('builds', 'Rename builds and copy files', function() {
-    ais.ais.forEach(function(ai) {
-      var files = grunt.file.expand([
-        ai.path + '/platoon_builds/*',
-        ai.path + '/fabber_builds/*',
-        ai.path + '/factory_builds/*',
-      ])
-      files.forEach(function(path) {
-        var base = Path.basename(path, '.json')
-        var dir = Path.basename(Path.dirname(path))
-        var builds = grunt.file.readJSON(path)
-        builds.build_list.forEach(function(rule) {
-          rule.name = ai.name_prefix + rule.name
-          if (dir == 'platoon_builds') {
-            rule.to_build = rule.to_build + ai.rule_postfix
-          }
-          rule.build_conditions.forEach(function(cond) {
-            cond.unshift({
-              "test_type":"UnitCount",
-              "unit_type_string0":"Commander & " + ai.unittype,
-              "compare0":">=",
-              "value0":1
-            })
-          })
+  var processBuildFile = function(path, ai) {
+    var base = Path.basename(path, '.json')
+    var dir = Path.basename(Path.dirname(path))
+    var builds = grunt.file.readJSON(path)
+    builds.build_list.forEach(function(rule) {
+      rule.name = ai.name_prefix + rule.name
+      if (dir == 'platoon_builds') {
+        rule.to_build = rule.to_build + ai.rule_postfix
+      }
+      rule.build_conditions.forEach(function(cond) {
+        cond.unshift({
+          "test_type":"UnitCount",
+          "unit_type_string0":"Commander & " + ai.unittype,
+          "compare0":">=",
+          "value0":1
         })
-        var dest = 'pa/ai/' + dir + '/' + base + ai.file_postfix + '.json'
-        grunt.file.write(dest, JSON.stringify(builds, null, 2))
       })
     })
+    var dest = 'pa/ai/' + dir + '/' + base + ai.file_postfix + '.json'
+    grunt.file.write(dest, JSON.stringify(builds, null, 2))
+  }
+
+  var processBuilds = function(basePath, ai) {
+    var files = grunt.file.expand([
+      basePath + '/platoon_builds/*',
+      basePath + '/fabber_builds/*',
+      basePath + '/factory_builds/*',
+    ])
+    files.forEach(function(path) {processBuildFile(path, ai)})
+  }
+
+  grunt.registerTask('builds', 'Rename builds and copy files', function() {
+    ais.ais.forEach(function(ai) {processBuilds(ai.path, ai)})
   })
 
   grunt.registerTask('commanders', 'Add unittype to commanders, requires media path', function() {
