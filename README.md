@@ -18,6 +18,8 @@ PA will upload **all files** in the mod directory, including `node_modules` and 
 
 ### Available Tasks
 
+Example config depends on media directory for vanilla AI, files as well as commanders
+
 - `copy:ai_config` - copy the specified `ai_config.json`
 - `ai_unit_map` - Mashup the unit maps
 - `platoon_templates` - Rename templates and combine into one file.
@@ -30,6 +32,6 @@ PA will upload **all files** in the mod directory, including `node_modules` and 
 - `copy:modinfo` - rewrite modinfo with AI specifics and put into `server_mods`
 - `mod` - above two tasks
 
-- `copy:vanilla` - copy the vanilla AI from media path into working directory
+- `copy:vanilla` - copy the vanilla AI from media path into ai working directory
 
 - `default`: `build`
