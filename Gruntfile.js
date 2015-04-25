@@ -4,14 +4,13 @@ prompt.start()
 
 var stream = 'stable'
 var media = require('./lib/path').media(stream)
-var server_mods = '../../server_mods/'
 
 var ais = {
-  ai_config: media + 'pa/ai/ai_config.json',
+  ai_config: 'ai/vanilla/ai_config.json',
   ais: [
     {
       name: 'Vanilla (Default)',
-      path: media + 'pa/ai',
+      path: 'ai/vanilla',
       rule_postfix: '_Default',
       file_postfix: '',
       name_prefix: 'Default - ',
@@ -20,7 +19,7 @@ var ais = {
     },
     {
       name: 'Quellar',
-      path: server_mods + 'com.pa.quitch.qQuellerAI/pa/ai',
+      path: '../../server_mods/com.pa.quitch.qQuellerAI/pa/ai',
       rule_postfix: '_Quellar',
       file_postfix: '_Quellar',
       name_prefix: 'Quellar - ',
@@ -29,7 +28,7 @@ var ais = {
     },
     {
       name: 's03g',
-      path: server_mods + 'com.s03g.AI/pa/ai',
+      path: '../../server_mods/com.s03g.AI/pa/ai',
       base_path: media + 'pa/ai',
       rule_postfix: '_s03g',
       file_postfix: '_s03g',
