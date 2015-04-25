@@ -35,3 +35,8 @@ Example config depends on media directory for vanilla AI, files as well as comma
 - `copy:vanilla` - copy the vanilla AI from media path into ai working directory
 
 - `default`: `build`
+
+## Credits
+
+- [Quitch](http://exodusesports.com/player/quitch/) Developed the [techniques for running multiple AIs](https://forums.uberent.com/threads/performing-ai-battles.68610/)
+- [Wondible](https://forums.uberent.com/members/wondible.1965145/) Automated most of the work involved.
