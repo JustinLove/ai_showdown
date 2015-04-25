@@ -12,6 +12,18 @@ Because default tasks are specialized to the default commander attribute, AIs mu
 
 ## Running
 
+### Quick Start
+
+- Put this project under a sibling of the `server_mods` directory e.g. `.../Planetary Annihilation/server_mod_dev/ai_showdown`
+- Run `npm install`
+- Copy `ais.json.example` to `ais.json` and edit for the AIs you want to mashup.
+- If you are using any files from the vanilla AI, run `grunt copy:vanilla`
+- `grunt build` (also the default task) will mashup files into the local directory
+- `grunt mod` will copy the local files into a runnable server mod.
+- copy the generated `server-script/lobby/commander_manager.js` into a copy of PA
+
+### Details
+
 `package.json` lists dependencies, but you'll need to run `npm install` to download them.
 
 PA will upload **all files** in the mod directory, including `node_modules` and maybe even `.git` - you probably don't want to use this in `server_mods` directly, unless you really like waiting.  The template is set up run to run as a project within a peer directory of `server_mods` - I use `server_mods_dev/mod_name`.  The task `grunt copy:mod` will copy the mod files to `../../server_mods/identifier`, you can change the `modPath` in the Gruntfile if you want to run it from somewhere else.
