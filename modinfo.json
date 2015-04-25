@@ -6,7 +6,7 @@
   "date": "2015/04/21",
   "description": "Mashup multiple AI configs so they can be played at the same time.",
   "display_name": "AI Showdown",
-  "forum": null,
+  "forum": "https://forums.uberent.com/threads/performing-ai-battles.68610/",
   "identifier": "com.wondible.pa.ai_showdown",
   "signature": "not yet implemented",
   "version": "0.1.0"
