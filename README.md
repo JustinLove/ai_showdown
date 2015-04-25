@@ -35,6 +35,7 @@ PA will upload **all files** in the mod directory, including `node_modules` and 
 
 Example config depends on media directory for vanilla AI, files as well as commanders
 
+- `copy:ai_configs` - copy the all `ai_config.json` to separate files
 - `copy:ai_config` - copy the specified `ai_config.json`
 - `ai_unit_map` - Mashup the unit maps
 - `platoon_templates` - Rename templates and combine into one file.

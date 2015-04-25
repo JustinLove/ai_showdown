@@ -11,7 +11,7 @@ module.exports = function(grunt) {
   var modPath = '../../server_mods/' + identifier + '/'
 
   // Project configuration.
-  grunt.initConfig({
+  var config = {
     copy: {
       ai_config: {
         files: [
@@ -20,6 +20,14 @@ module.exports = function(grunt) {
             dest: 'pa/ai/ai_config.json',
           },
         ],
+      },
+      ai_configs: {
+        files: ais.ais.map(function(ai) {
+          return {
+            src: ai.path + '/ai_config.json',
+            dest: 'pa/ai/ai_config' + ai.rule_postfix + '.json',
+          }
+        })
       },
       mod: {
         files: [
@@ -74,7 +82,9 @@ module.exports = function(grunt) {
     },
     clean: ['pa', 'server-script', 'ai/vanilla', modPath],
     platoons: {},
-  });
+  }
+
+  grunt.initConfig(config)
 
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -178,6 +188,7 @@ module.exports = function(grunt) {
   })
 
   grunt.registerTask('build', [
+    'copy:ai_configs',
     'copy:ai_config',
     'ai_unit_map',
     'platoon_templates',
