@@ -159,6 +159,8 @@ module.exports = function(grunt) {
     // implicitly to-end-of-line
     manager = manager.replace(/(var default_commanders = ).*/, "$1" + JSON.stringify(commanders))
     grunt.file.write('server-script/lobby/commander_manager.js', manager)
+
+    console.log("Created server-script/lobby/commander_manager.js  This file must be manually copied into PA")
   })
 
   grunt.registerTask('build', [
