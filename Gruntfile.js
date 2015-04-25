@@ -161,6 +161,7 @@ module.exports = function(grunt) {
         return com.ObjectName == ai.commander
       })[0].UnitSpec
       var spec = grunt.file.readJSON(media + specPath)
+      spec.display_name = ai.name
       spec.unit_types = base.unit_types.concat(['UNITTYPE_' + ai.unittype])
       grunt.file.write('.' + specPath, JSON.stringify(spec, null, 2))
     })
