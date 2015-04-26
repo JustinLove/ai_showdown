@@ -219,6 +219,7 @@ module.exports = function(grunt) {
     'ai_unit_map',
     'platoon_templates',
     'builds',
+    'personalities',
 
     // requires media path:
     'commanders',

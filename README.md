@@ -42,6 +42,7 @@ Example config depends on media directory for vanilla AI, files as well as comma
 - `ai_unit_map` - Mashup the unit maps
 - `platoon_templates` - Rename templates and combine into one file.
 - `builds` - Rename builds and copy files
+- `personalities` - Look for personality shadows in AI mods, and build a `new_game` scene mod (requires PAMM to load)
 - `commanders` - Add unittype to commanders, requires media path
 - `commander_manager` - Write server script file with commander list, requires media path and must be put in place by user
 - `build` - above tasks
