@@ -8,6 +8,11 @@
   "display_name": "AI Showdown",
   "forum": "https://forums.uberent.com/threads/performing-ai-battles.68610/",
   "identifier": "com.wondible.pa.ai_showdown",
+  "scenes": {
+    "new_game": [
+      "coui://ui/mods/ai_showdown/personalities.js"
+    ]
+  },
   "signature": "not yet implemented",
   "version": "0.1.0"
 }
