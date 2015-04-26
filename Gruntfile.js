@@ -188,21 +188,14 @@ module.exports = function(grunt) {
   })
 
   var extractPersonalities = function(path) {
-    //console.log(path)
     var text = grunt.file.read(path)
-    //console.log(text)
     var perString = text.match(/({(\s|\n)*'Normal'(.|\r|\n)*});/m)[1]
-    //console.log(perString)
     var json = perString.replace(/'/g, '"').replace(/(\w+):/g, '"$1":').replace(/},\r?\n\s+}/, '}}')
-    //console.log(json)
-    //console.log(JSON.parse(json))
     return JSON.parse(json)
   }
 
   grunt.registerTask('personalities', 'Look for custom ai personalities', function() {
-    //var base = extractPersonalities(media + 'ui/main/game/new_game/js/ai.js')
     var out = {}
-    //console.log(out)
     ais.ais.forEach(function(ai) {
       var path = ai.path + '/../../ui/main/game/new_game/js/ai.js'
       if (grunt.file.exists(path)) {
