@@ -54,7 +54,7 @@ Example config depends on media directory for vanilla AI, files as well as comma
 - `media_check` - test if the PA media path is correctly configured
 - `copy:vanilla` - copy the vanilla AI from media path into ai working directory
 
-- `clean` - remove all copied/generated files.  You must pass the `-f` switch to delete files outside your own directory (e.g. the generated mod)  Please take care that your modPath is correct and will not accidentally resolve to a root path or somewhere uwanted.  The --verbose and --no-write switches are useful for checking, though it does not show the fully resolved path.
+- `clean` - remove all copied/generated files.  If a configuration change causes a file to change names names or no longer be generated, the old files must be removed, which clean can do. You must pass the `-f` switch to delete files outside your own directory (e.g. the generated mod)  Please take care that your modPath is correct and will not accidentally resolve to a root path or somewhere uwanted.  The --verbose and --no-write switches are useful for checking, though it does not show the fully resolved path.
 
 - `default`: `build`
 
