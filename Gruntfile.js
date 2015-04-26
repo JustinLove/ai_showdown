@@ -80,7 +80,7 @@ module.exports = function(grunt) {
         },
       },
     },
-    clean: ['pa', 'server-script', 'ai/vanilla', modPath],
+    clean: ['pa', 'ui', 'server-script', 'ai/vanilla', modPath],
     platoons: {},
   }
 
