@@ -1,9 +1,8 @@
 var Path = require('path')
-var prompt = require('prompt')
-prompt.start()
 
-var stream = 'stable'
-var media = require('./lib/path').media(stream)
+var papath = require('./lib/path')
+var media = papath.media('stable')
+var target = papath.media('hack')
 
 module.exports = function(grunt) {
   var ais = grunt.file.readJSON('ais.json')
@@ -183,8 +182,6 @@ module.exports = function(grunt) {
     // implicitly to-end-of-line
     manager = manager.replace(/(var default_commanders = ).*/, "$1" + JSON.stringify(commanders))
     grunt.file.write('server-script/lobby/commander_manager.js', manager)
-
-    console.log("Created server-script/lobby/commander_manager.js  This file must be manually copied into PA")
   })
 
   var extractPersonalities = function(path) {
@@ -193,6 +190,25 @@ module.exports = function(grunt) {
     var json = perString.replace(/'/g, '"').replace(/(\w+):/g, '"$1":').replace(/},\r?\n\s+}/, '}}')
     return JSON.parse(json)
   }
+
+  var installFile = function(path) {
+    var fullPath = target + path
+    var backup = fullPath + '.backup'
+
+    if (grunt.file.exists(fullPath)) {
+      if (!grunt.file.exists(backup)) {
+        grunt.file.copy(fullPath, backup)
+      }
+      grunt.file.copy(path, fullPath)
+    } else {
+      console.log('target path not defined (Gruntfile.js), file must be copied manually')
+      console.log(fullPath)
+    }
+  }
+
+  grunt.registerTask('install', 'overwrite server-script files in the PA target path', function() {
+    installFile('server-script/lobby/commander_manager.js')
+  })
 
   grunt.registerTask('personalities', 'Look for custom ai personalities', function() {
     var out = {}
@@ -227,6 +243,11 @@ module.exports = function(grunt) {
   ]);
   grunt.registerTask('default', ['build']);
 
-  grunt.registerTask('mod', ['copy:modinfo', 'copy:mod'])
+  grunt.registerTask('mod', [
+    'copy:modinfo',
+    'copy:mod',
+    // requires target path:
+    'install',
+  ])
 };
 

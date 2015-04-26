@@ -44,12 +44,13 @@ Example config depends on media directory for vanilla AI, files as well as comma
 - `builds` - Rename builds and copy files
 - `personalities` - Look for personality shadows in AI mods, and build a `new_game` scene mod (requires PAMM to load)
 - `commanders` - Add unittype to commanders, requires media path
-- `commander_manager` - Write server script file with commander list, requires media path and must be put in place by user
+- `commander_manager` - Write server script file with commander list, requires media path and must be overwritten in a copy of PA
 - `build` - above tasks
 
 - `copy:mod` - copy the mod files into `server_mods`
 - `copy:modinfo` - rewrite modinfo with AI specifics and put into `server_mods`
-- `mod` - above two tasks
+- `install` - Overwrite `commander_manager` in the PA specified by the `target` path in `Gruntfile.js`.  Attempts to make a .backup file if one does not exist.
+- `mod` - above three tasks
 
 - `media_check` - test if the PA media path is correctly configured
 - `copy:vanilla` - copy the vanilla AI from media path into ai working directory
