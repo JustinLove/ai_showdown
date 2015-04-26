@@ -1,6 +1,6 @@
 ## 0.2.0
 
-- Make renamed copes of individual `ai_config.json`
+- Make renamed copies of individual `ai_config.json`
 - Import personalities as server scene mod
 - Install task to overwrite `commander_manager`
 - Update commander names with AI name
