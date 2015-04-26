@@ -8,7 +8,7 @@
       "file_postfix": "",
       "name_prefix": "Default - ",
       "unittype": "Custom1",
-      "commander": "ProgenitorCommander"
+      "commander": "RaptorCenturion"
     },
     {
       "name": "Queller",
@@ -17,7 +17,7 @@
       "file_postfix": "_Queller",
       "name_prefix": "Queller - ",
       "unittype": "Custom2",
-      "commander": "AlphaCommander"
+      "commander": "RaptorRallus"
     },
     {
       "name": "s03g",
@@ -27,7 +27,7 @@
       "file_postfix": "_s03g",
       "name_prefix": "s03g - ",
       "unittype": "Custom3",
-      "commander": "ThetaCommander"
+      "commander": "TankAeson"
     }
   ]
 }
