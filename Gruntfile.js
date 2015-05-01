@@ -101,25 +101,33 @@ module.exports = function(grunt) {
   grunt.registerTask('ai_unit_map', 'Mashup the units maps', function() {
     out = {}
     ais.ais.forEach(function(ai) {
-      map = grunt.file.readJSON(ai.path + '/ai_unit_map.json').unit_map
+      var path = ai.path + '/ai_unit_map.json'
+      if (!grunt.file.exists(path)) return
+      map = grunt.file.readJSON(path).unit_map
       Object.keys(map).forEach(function(name) {
         out[name] = map[name]
       })
     })
-    grunt.file.write('pa/ai/ai_unit_map.json',
-                     JSON.stringify({unit_map: out}, null, 2))
+    if (Object.keys(out).length > 0) {
+      grunt.file.write('pa/ai/ai_unit_map.json',
+                       JSON.stringify({unit_map: out}, null, 2))
+    }
   })
 
   grunt.registerTask('platoon_templates', 'Rename templates and combine into one file', function() {
     out = {}
     ais.ais.forEach(function(ai) {
-      platoons = grunt.file.readJSON(ai.path + '/platoon_templates.json').platoon_templates
+      var path = ai.path + '/platoon_templates.json'
+      if (!grunt.file.exists(path)) return
+      platoons = grunt.file.readJSON(path).platoon_templates
       Object.keys(platoons).forEach(function(name) {
         out[name + ai.rule_postfix] = platoons[name]
       })
     })
-    grunt.file.write('pa/ai/platoon_templates.json',
-                     JSON.stringify({platoon_templates: out}, null, 2))
+    if (Object.keys(out).length > 0) {
+      grunt.file.write('pa/ai/platoon_templates.json',
+                       JSON.stringify({platoon_templates: out}, null, 2))
+    }
   })
 
   var processBuildFile = function(path, ai) {
