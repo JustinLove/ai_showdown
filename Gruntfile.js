@@ -98,20 +98,28 @@ module.exports = function(grunt) {
     }
   })
 
-  grunt.registerTask('ai_unit_map', 'Mashup the units maps', function() {
-    out = {}
+  var processMapFile = function(path, ai) {
+    var base = Path.basename(path, '.json')
+    var dir = Path.basename(Path.dirname(path))
+    var maps = grunt.file.readJSON(path)
+    var dest = 'pa/ai/' + dir + '/' + base + ai.file_postfix + '.json'
+    grunt.file.copy(path, dest)
+  }
+
+  var processMaps = function(basePath, ai) {
+    var files = grunt.file.expand([
+      basePath + '/unit_maps/*',
+    ])
+    files.forEach(function(path) {processMapFile(path, ai)})
+  }
+
+  grunt.registerTask('ai_unit_map', 'Copy and rename unit maps', function() {
     ais.ais.forEach(function(ai) {
-      var path = ai.path + '/ai_unit_map.json'
-      if (!grunt.file.exists(path)) return
-      map = grunt.file.readJSON(path).unit_map
-      Object.keys(map).forEach(function(name) {
-        out[name] = map[name]
-      })
+      if (ai.base_path) {
+        processMaps(ai.base_path, ai)
+      }
+      processMaps(ai.path, ai)
     })
-    if (Object.keys(out).length > 0) {
-      grunt.file.write('pa/ai/ai_unit_map.json',
-                       JSON.stringify({unit_map: out}, null, 2))
-    }
   })
 
   grunt.registerTask('platoon_templates', 'Rename templates and combine into one file', function() {
