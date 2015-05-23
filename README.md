@@ -39,8 +39,8 @@ Example config depends on media directory for vanilla AI, files as well as comma
 
 - `copy:ai_configs` - copy the all `ai_config.json` to separate files
 - `copy:ai_config` - copy the specified `ai_config.json`
-- `ai_unit_map` - Mashup the unit maps
-- `platoon_templates` - Rename templates and combine into one file.
+- `ai_unit_map` - Copy and rename `unit_maps`
+- `platoon_templates` - Rename rules and copy files
 - `builds` - Rename builds and copy files
 - `personalities` - Look for personality shadows in AI mods, and build a `new_game` scene mod (requires PAMM to load)
 - `commanders` - Add unittype to commanders, requires media path

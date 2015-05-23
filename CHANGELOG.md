@@ -1,3 +1,7 @@
+## 0.3.0
+
+- use the `unit_maps` and `platoon_templates` directories instead of single files, circa 82000-pte
+
 ## 0.2.1
 
 - ensure `ai_unit_map` and `platoon_templates` exist before reading them
