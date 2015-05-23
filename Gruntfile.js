@@ -122,20 +122,34 @@ module.exports = function(grunt) {
     })
   })
 
-  grunt.registerTask('platoon_templates', 'Rename templates and combine into one file', function() {
-    out = {}
-    ais.ais.forEach(function(ai) {
-      var path = ai.path + '/platoon_templates.json'
-      if (!grunt.file.exists(path)) return
-      platoons = grunt.file.readJSON(path).platoon_templates
-      Object.keys(platoons).forEach(function(name) {
-        out[name + ai.rule_postfix] = platoons[name]
-      })
+  var processPlatoonFile = function(path, ai) {
+    var base = Path.basename(path, '.json')
+    var dir = Path.basename(Path.dirname(path))
+    var platoons = grunt.file.readJSON(path).platoon_templates
+    var out = {}
+    Object.keys(platoons).forEach(function(name) {
+      out[name + ai.rule_postfix] = platoons[name]
     })
     if (Object.keys(out).length > 0) {
-      grunt.file.write('pa/ai/platoon_templates.json',
-                       JSON.stringify({platoon_templates: out}, null, 2))
+      var dest = 'pa/ai/' + dir + '/' + base + ai.file_postfix + '.json'
+      grunt.file.write(dest, JSON.stringify({platoon_templates: out}, null, 2))
     }
+  }
+
+  var processPlatoons = function(basePath, ai) {
+    var files = grunt.file.expand([
+      basePath + '/platoon_templates/*',
+    ])
+    files.forEach(function(path) {processPlatoonFile(path, ai)})
+  }
+
+  grunt.registerTask('platoon_templates', 'Rename templates and copy files', function() {
+    ais.ais.forEach(function(ai) {
+      if (ai.base_path) {
+        processPlatoons(ai.base_path, ai)
+      }
+      processPlatoons(ai.path, ai)
+    })
   })
 
   var processBuildFile = function(path, ai) {
