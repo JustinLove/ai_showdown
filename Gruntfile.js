@@ -89,7 +89,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('media_check', 'Check if the media path is configured correctly', function() {
-    if (grunt.file.exists(media + 'pa/ai/ai_unit_map.json')) {
+    if (grunt.file.exists(media + 'pa/ai/ai_config.json')) {
       console.log("media path appears to be pointing at a copy of PA")
       console.log(media)
     } else {

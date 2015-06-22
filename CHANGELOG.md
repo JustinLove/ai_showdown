@@ -1,3 +1,7 @@
+## 0.3.1
+
+- simple `ai_unit_map` no longer exists in windows verion, media check with `ai_config` instead
+
 ## 0.3.0
 
 - use the `unit_maps` and `platoon_templates` directories instead of single files, circa 82000-pte
