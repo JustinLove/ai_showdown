@@ -10,7 +10,7 @@ Tasks which copy or use files from the base game need a path to the media direct
 
 Because default tasks are specialized to the default commander attribute, AIs must be complete.  If you rely on AI files from the base game, point the `base_path`attribute at the base AI.
 
-If you are not using the default AI, you must take care to prevent interference from un-specialized rules. Either include the default AI and don't use it matches, or ensure that one of the included AIs has no file postfix and shadows all default file names.
+If you are not using the default AI, you must take care to prevent interference from un-specialized rules. Either include the default AI and don't use it matches, or ensure that one of the included AIs has a blank `directory` and shadows all default file names.
 
 ## Running
 
