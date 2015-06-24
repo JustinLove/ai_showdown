@@ -133,7 +133,6 @@ module.exports = function(grunt) {
       '**/*.json',
     ], Path.join('pa/ai/platoon_templates', (ai.directory || ai.file_postfix || '')),
       {cwd: Path.join(basePath, 'platoon_templates')})
-    console.log(basePath, files)
     files.forEach(function(path) {processPlatoonFile(path, ai)})
   }
 
