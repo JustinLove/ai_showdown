@@ -152,13 +152,11 @@ module.exports = function(grunt) {
     })
   })
 
-  var processBuildFile = function(path, ai) {
-    var base = Path.basename(path, '.json')
-    var dir = Path.basename(Path.dirname(path))
-    var builds = grunt.file.readJSON(path)
+  var processBuildFile = function(map, ai) {
+    var builds = grunt.file.readJSON(map.src)
     builds.build_list.forEach(function(rule) {
       rule.name = ai.name_prefix + rule.name
-      if (dir == 'platoon_builds') {
+      if (/platoon_builds/.test(map.src)){
         rule.to_build = rule.to_build + ai.rule_postfix
       }
       rule.build_conditions.forEach(function(cond) {
@@ -170,17 +168,21 @@ module.exports = function(grunt) {
         })
       })
     })
-    var dest = 'pa/ai/' + dir + '/' + base + ai.file_postfix + '.json'
-    grunt.file.write(dest, JSON.stringify(builds, null, 2))
+    grunt.file.write(map.dest, JSON.stringify(builds, null, 2))
+  }
+
+  var processBuildDir = function(basePath, dir, ai) {
+    var files = grunt.file.expandMapping([
+      '**/*.json',
+    ], 'pa/ai' + dir + '/' + (ai.directory || ai.file_postfix), {cwd: basePath + dir})
+    console.log(basePath, files)
+    files.forEach(function(path) {processBuildFile(path, ai)})
   }
 
   var processBuilds = function(basePath, ai) {
-    var files = grunt.file.expand([
-      basePath + '/platoon_builds/*',
-      basePath + '/fabber_builds/*',
-      basePath + '/factory_builds/*',
-    ])
-    files.forEach(function(path) {processBuildFile(path, ai)})
+    processBuildDir(basePath, '/platoon_builds', ai)
+    processBuildDir(basePath, '/fabber_builds', ai)
+    processBuildDir(basePath, '/factory_builds', ai)
   }
 
   grunt.registerTask('builds', 'Rename builds and copy files', function() {

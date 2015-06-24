@@ -1,9 +1,9 @@
 {
   "author": "wondible, quitch",
-  "build": "82000",
+  "build": "83074",
   "category": ["ai"],
   "context": "server",
-  "date": "2015/05/23",
+  "date": "2015/06/23",
   "description": "Mashup multiple AI configs so they can be played at the same time.",
   "display_name": "AI Showdown",
   "forum": "https://forums.uberent.com/threads/performing-ai-battles.68610/",
@@ -14,6 +14,6 @@
     ]
   },
   "signature": "not yet implemented",
-  "version": "0.3.1"
+  "version": "0.4.0"
 }
 

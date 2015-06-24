@@ -1,3 +1,8 @@
+## 0.4.0
+
+- Process builds in subdirectories
+- New ai property: directory
+
 ## 0.3.1
 
 - simple `ai_unit_map` no longer exists in windows verion, media check with `ai_config` instead
