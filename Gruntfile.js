@@ -98,19 +98,13 @@ module.exports = function(grunt) {
     }
   })
 
-  var processMapFile = function(path, ai) {
-    var base = Path.basename(path, '.json')
-    var dir = Path.basename(Path.dirname(path))
-    var maps = grunt.file.readJSON(path)
-    var dest = 'pa/ai/' + dir + '/' + base + ai.file_postfix + '.json'
-    grunt.file.copy(path, dest)
-  }
-
   var processMaps = function(basePath, ai) {
-    var files = grunt.file.expand([
-      basePath + '/unit_maps/*',
-    ])
-    files.forEach(function(path) {processMapFile(path, ai)})
+    var files = grunt.file.expandMapping([
+      '**/*.json',
+    ], 'pa/ai/unit_maps/' + (ai.directory || ai.file_postfix), {cwd: basePath + '/unit_maps'})
+    files.forEach(function(map) {
+      grunt.file.copy(map.src, map.dest)
+    })
   }
 
   grunt.registerTask('ai_unit_map', 'Copy and rename unit maps', function() {

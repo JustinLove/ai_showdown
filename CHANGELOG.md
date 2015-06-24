@@ -1,7 +1,7 @@
 ## 0.4.0
 
-- Process builds in subdirectories
-- New ai property: directory
+- Process subdirectories
+- New ai property: `directory`, replaces `file_postfix`
 
 ## 0.3.1
 
