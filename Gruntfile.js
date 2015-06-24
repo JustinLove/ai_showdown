@@ -122,24 +122,21 @@ module.exports = function(grunt) {
     })
   })
 
-  var processPlatoonFile = function(path, ai) {
-    var base = Path.basename(path, '.json')
-    var dir = Path.basename(Path.dirname(path))
-    var platoons = grunt.file.readJSON(path).platoon_templates
+  var processPlatoonFile = function(map, ai) {
+    var platoons = grunt.file.readJSON(map.src).platoon_templates
     var out = {}
     Object.keys(platoons).forEach(function(name) {
       out[name + ai.rule_postfix] = platoons[name]
     })
     if (Object.keys(out).length > 0) {
-      var dest = 'pa/ai/' + dir + '/' + base + ai.file_postfix + '.json'
-      grunt.file.write(dest, JSON.stringify({platoon_templates: out}, null, 2))
+      grunt.file.write(map.dest, JSON.stringify({platoon_templates: out}, null, 2))
     }
   }
 
   var processPlatoons = function(basePath, ai) {
-    var files = grunt.file.expand([
-      basePath + '/platoon_templates/*',
-    ])
+    var files = grunt.file.expandMapping([
+      '**/*.json',
+    ], 'pa/ai/platoon_templates/' + (ai.directory || ai.file_postfix), {cwd: basePath + '/platoon_templates'})
     files.forEach(function(path) {processPlatoonFile(path, ai)})
   }
 
@@ -175,7 +172,6 @@ module.exports = function(grunt) {
     var files = grunt.file.expandMapping([
       '**/*.json',
     ], 'pa/ai' + dir + '/' + (ai.directory || ai.file_postfix), {cwd: basePath + dir})
-    console.log(basePath, files)
     files.forEach(function(path) {processBuildFile(path, ai)})
   }
 
