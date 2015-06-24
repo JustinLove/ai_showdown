@@ -14,7 +14,7 @@
       "name": "Queller",
       "path": "../../server_mods/com.pa.quitch.qQuellerAI/pa/ai",
       "rule_postfix": "_Queller",
-      "directory": "/Queller",
+      "directory": "Queller",
       "name_prefix": "Queller - ",
       "unittype": "Custom2",
       "commander": "RaptorRallus"
@@ -24,7 +24,7 @@
       "path": "../../server_mods/com.s03g.AI/pa/ai",
       "base_path": "ai/vanilla/",
       "rule_postfix": "_s03g",
-      "directory": "/s03g",
+      "directory": "s03g",
       "name_prefix": "s03g - ",
       "unittype": "Custom3",
       "commander": "TankAeson"

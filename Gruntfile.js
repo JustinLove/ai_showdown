@@ -101,7 +101,8 @@ module.exports = function(grunt) {
   var processMaps = function(basePath, ai) {
     var files = grunt.file.expandMapping([
       '**/*.json',
-    ], 'pa/ai/unit_maps/' + (ai.directory || ai.file_postfix), {cwd: basePath + '/unit_maps'})
+    ], Path.join('pa/ai/unit_maps', (ai.directory || ai.file_postfix || '')),
+      {cwd: Path.join(basePath, 'unit_maps')})
     files.forEach(function(map) {
       grunt.file.copy(map.src, map.dest)
     })
@@ -130,7 +131,9 @@ module.exports = function(grunt) {
   var processPlatoons = function(basePath, ai) {
     var files = grunt.file.expandMapping([
       '**/*.json',
-    ], 'pa/ai/platoon_templates/' + (ai.directory || ai.file_postfix), {cwd: basePath + '/platoon_templates'})
+    ], Path.join('pa/ai/platoon_templates', (ai.directory || ai.file_postfix || '')),
+      {cwd: Path.join(basePath, 'platoon_templates')})
+    console.log(basePath, files)
     files.forEach(function(path) {processPlatoonFile(path, ai)})
   }
 
@@ -165,7 +168,8 @@ module.exports = function(grunt) {
   var processBuildDir = function(basePath, dir, ai) {
     var files = grunt.file.expandMapping([
       '**/*.json',
-    ], 'pa/ai' + dir + '/' + (ai.directory || ai.file_postfix), {cwd: basePath + dir})
+    ], Path.join('pa/ai', dir, (ai.directory || ai.file_postfix || '')),
+      {cwd: Path.join(basePath, dir)})
     files.forEach(function(path) {processBuildFile(path, ai)})
   }
 
