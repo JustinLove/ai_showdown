@@ -6,16 +6,14 @@
       "path": "ai/vanilla",
       "rule_postfix": "_Default",
       "directory": "",
-      "name_prefix": "Default - ",
-      "unittype": "Custom1"
+      "name_prefix": "Default - "
     },
     {
       "name": "Queller",
       "path": "../../server_mods/com.pa.quitch.qQuellerAI/pa/ai",
       "rule_postfix": "_Queller",
       "directory": "Queller",
-      "name_prefix": "Queller - ",
-      "unittype": "Custom2"
+      "name_prefix": "Queller - "
     },
     {
       "name": "s03g",
@@ -23,8 +21,7 @@
       "base_path": "ai/vanilla/",
       "rule_postfix": "_s03g",
       "directory": "s03g",
-      "name_prefix": "s03g - ",
-      "unittype": "Custom3"
+      "name_prefix": "s03g - "
     }
   ]
 }

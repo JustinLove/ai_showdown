@@ -153,10 +153,9 @@ module.exports = function(grunt) {
       }
       rule.build_conditions.forEach(function(cond) {
         cond.unshift({
-          "test_type":"UnitCount",
-          "unit_type_string0":"Commander & " + ai.unittype,
-          "compare0":">=",
-          "value0":1
+          "boolean": true, 
+          "string0": ai.personality_tag || ai.name,
+          "test_type": "HasPersonalityTag"
         })
       })
     })
