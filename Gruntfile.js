@@ -35,7 +35,6 @@ module.exports = function(grunt) {
               'LICENSE.txt',
               'README.md',
               'CHANGELOG.md',
-              'server-script/**',
               'ui/**',
               'pa/**'],
             dest: modPath,
@@ -54,7 +53,7 @@ module.exports = function(grunt) {
             var info = JSON.parse(content)
             info.display_name = 'AI Showdown: ' + ais.ais.map(function(ai) {return ai.name}).join(' vs. ')
             info.description = ais.ais.map(function(ai) {
-              return ai.name + ': ' + ai.commander
+              return ai.name
             }).join(', ')
             info.date = require('dateformat')(new Date(), 'yyyy/mm/dd')
             info.identifier = identifier
@@ -79,7 +78,7 @@ module.exports = function(grunt) {
         },
       },
     },
-    clean: ['pa', 'ui', 'server-script', 'ai/vanilla', modPath],
+    clean: ['pa', 'ui', 'ai/vanilla', modPath],
     platoons: {},
   }
 
@@ -187,53 +186,12 @@ module.exports = function(grunt) {
     })
   })
 
-  grunt.registerTask('commanders', 'Add unittype to commanders, requires media path', function() {
-    var base = grunt.file.readJSON(media + 'pa/units/commanders/base_commander/base_commander.json')
-    var commanders = require(media + 'server-script/lobby/commander_table').data
-    ais.ais.forEach(function(ai) {
-      var specPath = commanders.filter(function(com) {
-        return com.ObjectName == ai.commander
-      })[0].UnitSpec
-      var spec = grunt.file.readJSON(media + specPath)
-      spec.display_name = ai.name
-      spec.unit_types = base.unit_types.concat(['UNITTYPE_' + ai.unittype])
-      grunt.file.write('.' + specPath, JSON.stringify(spec, null, 2))
-    })
-  })
-
-  grunt.registerTask('commander_manager', 'Write server script file with commander list, requires media path and must be put in place by user', function() {
-    var commanders = ais.ais.map(function(ai) { return ai.commander })
-    var manager = grunt.file.read(media + 'server-script/lobby/commander_manager.js')
-    // implicitly to-end-of-line
-    manager = manager.replace(/(var default_commanders = ).*/, "$1" + JSON.stringify(commanders))
-    grunt.file.write('server-script/lobby/commander_manager.js', manager)
-  })
-
   var extractPersonalities = function(path) {
     var text = grunt.file.read(path)
     var perString = text.match(/({(\s|\n)*'Normal'(.|\r|\n)*});/m)[1]
     var json = perString.replace(/'/g, '"').replace(/(\w+):/g, '"$1":').replace(/},\r?\n\s+}/, '}}')
     return JSON.parse(json)
   }
-
-  var installFile = function(path) {
-    var fullPath = target + path
-    var backup = fullPath + '.backup'
-
-    if (grunt.file.exists(fullPath)) {
-      if (!grunt.file.exists(backup)) {
-        grunt.file.copy(fullPath, backup)
-      }
-      grunt.file.copy(path, fullPath)
-    } else {
-      console.log('target path not defined (Gruntfile.js), file must be copied manually')
-      console.log(fullPath)
-    }
-  }
-
-  grunt.registerTask('install', 'overwrite server-script files in the PA target path', function() {
-    installFile('server-script/lobby/commander_manager.js')
-  })
 
   grunt.registerTask('personalities', 'Look for custom ai personalities', function() {
     var out = {}
@@ -261,18 +219,12 @@ module.exports = function(grunt) {
     'platoon_templates',
     'builds',
     'personalities',
-
-    // requires media path:
-    'commanders',
-    'commander_manager',
   ]);
   grunt.registerTask('default', ['build']);
 
   grunt.registerTask('mod', [
     'copy:modinfo',
     'copy:mod',
-    // requires target path:
-    'install',
   ])
 };
 

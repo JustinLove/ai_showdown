@@ -7,8 +7,7 @@
       "rule_postfix": "_Default",
       "directory": "",
       "name_prefix": "Default - ",
-      "unittype": "Custom1",
-      "commander": "RaptorCenturion"
+      "unittype": "Custom1"
     },
     {
       "name": "Queller",
@@ -16,8 +15,7 @@
       "rule_postfix": "_Queller",
       "directory": "Queller",
       "name_prefix": "Queller - ",
-      "unittype": "Custom2",
-      "commander": "RaptorRallus"
+      "unittype": "Custom2"
     },
     {
       "name": "s03g",
@@ -26,8 +24,7 @@
       "rule_postfix": "_s03g",
       "directory": "s03g",
       "name_prefix": "s03g - ",
-      "unittype": "Custom3",
-      "commander": "TankAeson"
+      "unittype": "Custom3"
     }
   ]
 }

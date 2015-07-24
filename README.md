@@ -8,7 +8,7 @@ ais.json file specifies paths and attributes for each AI.  The example configura
 
 Tasks which copy or use files from the base game need a path to the media directory.  There are some rough rules that try to guess this path, but the `media` variable may need to be overriden with an explicit path.
 
-Because default tasks are specialized to the default commander attribute, AIs must be complete.  If you rely on AI files from the base game, point the `base_path`attribute at the base AI.
+Because default tasks are specialized, AIs must be complete.  If you rely on AI files from the base game, point the `base_path`attribute at the base AI.
 
 If you are not using the default AI, you must take care to prevent interference from un-specialized rules. Either include the default AI and don't use it matches, or ensure that one of the included AIs has a blank `directory` and shadows all default file names.
 
@@ -25,7 +25,6 @@ Uses on [Node](https://nodejs.org/) with NPM and the [Grunt](http://gruntjs.com/
 - If you are using any files from the vanilla AI, run `grunt copy:vanilla`
 - `grunt build` (also the default task) will mashup files into the local directory
 - `grunt mod` will copy the local files into a runnable server mod.
-- copy the generated `server-script/lobby/commander_manager.js` into a copy of PA
 
 ### Details
 
@@ -35,7 +34,7 @@ PA will upload **all files** in the mod directory, including `node_modules` and 
 
 ### Available Tasks
 
-Example config depends on media directory for vanilla AI, files as well as commanders
+Example config depends on media directory for vanilla AI files
 
 - `copy:ai_configs` - copy the all `ai_config.json` to separate files
 - `copy:ai_config` - copy the specified `ai_config.json`
@@ -43,13 +42,10 @@ Example config depends on media directory for vanilla AI, files as well as comma
 - `platoon_templates` - Rename rules and copy files
 - `builds` - Rename builds and copy files
 - `personalities` - Look for personality shadows in AI mods, and build a `new_game` scene mod (requires PAMM to load)
-- `commanders` - Add unittype to commanders, requires media path
-- `commander_manager` - Write server script file with commander list, requires media path and must be overwritten in a copy of PA
 - `build` - above tasks
 
 - `copy:mod` - copy the mod files into `server_mods`
 - `copy:modinfo` - rewrite modinfo with AI specifics and put into `server_mods`
-- `install` - Overwrite `commander_manager` in the PA specified by the `target` path in `Gruntfile.js`.  Attempts to make a .backup file if one does not exist.
 - `mod` - above three tasks
 
 - `media_check` - test if the PA media path is correctly configured
