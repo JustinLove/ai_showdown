@@ -1,3 +1,10 @@
+## 0.5.0
+
+- No longer generate commander files
+- Generate personality tag rules instead of unittype rules.
+- New property `personality_tag`, defaults to `name`
+- Add `personality_tags` to already processed personalities
+
 ## 0.4.0
 
 - Process subdirectories

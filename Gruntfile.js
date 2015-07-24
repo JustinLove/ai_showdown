@@ -201,6 +201,8 @@ module.exports = function(grunt) {
         Object.keys(mod).forEach(function(personality) {
           var name = ai.name_prefix + personality
           mod[personality].name = name
+          mod[personality].personality_tags = mod[personality].personality_tags || []
+          mod[personality].personality_tags.push(ai.personality_tag || ai.name)
           out[name] = mod[personality]
         })
       }
