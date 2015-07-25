@@ -190,6 +190,13 @@ module.exports = function(grunt) {
     })
   })
 
+  var locatePersonalityFile = function(ai) {
+    var path
+
+    path = ai.path + '/../../ui/main/game/new_game/js/ai.js'
+    if (grunt.file.exists(path)) return path
+  }
+
   var extractPersonalities = function(path) {
     var text = grunt.file.read(path)
     var perString = text.match(/({(\s|\n)*'(Idle|Normal)'(.|\r|\n)*});/m)[1]
@@ -200,8 +207,8 @@ module.exports = function(grunt) {
   grunt.registerTask('personalities', 'Look for custom ai personalities', function() {
     var out = {}
     ais.ais.forEach(function(ai) {
-      var path = ai.path + '/../../ui/main/game/new_game/js/ai.js'
-      if (grunt.file.exists(path)) {
+      var path = locatePersonalityFile(ai)
+      if (path) {
         var mod = extractPersonalities(path)
         Object.keys(mod).forEach(function(personality) {
           var name = ai.name_prefix + personality
