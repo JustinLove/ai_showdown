@@ -1,6 +1,8 @@
 {
   "ai_config": "<%= media %>/pa/ai/ai_config.json",
   "xinactivex media": "/Users/jlove/Library/Application Support/Uber Entertainment/Planetary Annihilation/data/streams/stable/PA.app/Contents/Resources/media/",
+  "client_mods": "../../mods",
+  "server_mods": "../../server_mods",
   "ais": [
     {
       "name": "Vanilla (Default)",
@@ -11,15 +13,15 @@
     },
     {
       "name": "Queller",
-      "path": "../../server_mods/com.pa.quitch.qQuellerAI/pa/ai",
-      "personality_file": "../../mods/com.pa.quitch.qQuellerAIPersonalities/ui/main/game/new_game/js/ai.js",
+      "path": "<%= config.server_mods %>/com.pa.quitch.qQuellerAI/pa/ai",
+      "personality_file": "<%= config.client_mods %>/com.pa.quitch.qQuellerAIPersonalities/ui/main/game/new_game/js/ai.js",
       "rule_postfix": "_Queller",
       "directory": "Queller",
       "name_prefix": "Queller - "
     },
     {
       "name": "s03g",
-      "path": "../../server_mods/com.s03g.AI/pa/ai",
+      "path": "<%= config.server_mods %>/com.s03g.AI/pa/ai",
       "base_path": "<%= media %>/pa/ai",
       "rule_postfix": "_s03g",
       "directory": "s03g",

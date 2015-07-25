@@ -23,7 +23,7 @@ module.exports = function(grunt) {
     }
   })
   var identifier = 'com.wondible.pa.ai_showdown.' + ais.ais.map(function(ai) {return ai.rule_postfix}).join('')
-  var modPath = '../../server_mods/' + identifier + '/'
+  var modPath = (ais.server_mods || '../../server_mods') + '/' + identifier + '/'
 
   // Project configuration.
   var config = {
