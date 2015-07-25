@@ -5,7 +5,7 @@
 - New property `personality_tag`, defaults to `name`
 - New property `personality_file`, defaults to ai.js in mod or media
 - Always attempts to create personalities with `personality_tags`
-- %media% in `path` and `base_path`, and `personality_file` will be replaced with the gruntfile media path
+- Template expansion in `path`, `base_path`, and `personality_file`, primarily for `<%= media %>`
 
 ## 0.4.0
 

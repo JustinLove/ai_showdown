@@ -6,12 +6,19 @@ var media = papath.media('stable')
 module.exports = function(grunt) {
   var ais = grunt.file.readJSON('ais.json')
   ais.ais.forEach(function(ai) {
-    ai.path = ai.path.replace('%media%', media)
+    var options = {
+      data: {
+        config: ais,
+        ai: ai,
+        media: media,
+      }
+    }
+    ai.path = grunt.template.process(ai.path, options)
     if (ai.base_path) {
-      ai.base_path = ai.base_path.replace('%media%', media)
+      ai.base_path = grunt.template.process(ai.base_path, options)
     }
     if (ai.personality_file) {
-      ai.personality_file = ai.personality_file.replace('%media%', media)
+      ai.personality_file = grunt.template.process(ai.personality_file, options)
     }
   })
   var identifier = 'com.wondible.pa.ai_showdown.' + ais.ais.map(function(ai) {return ai.rule_postfix}).join('')
