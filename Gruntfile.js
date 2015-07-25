@@ -10,6 +10,9 @@ module.exports = function(grunt) {
     if (ai.base_path) {
       ai.base_path = ai.base_path.replace('%media%', media)
     }
+    if (ai.personality_file) {
+      ai.personality_file = ai.personality_file.replace('%media%', media)
+    }
   })
   var identifier = 'com.wondible.pa.ai_showdown.' + ais.ais.map(function(ai) {return ai.rule_postfix}).join('')
   var modPath = '../../server_mods/' + identifier + '/'
@@ -192,6 +195,10 @@ module.exports = function(grunt) {
 
   var locatePersonalityFile = function(ai) {
     var path
+
+    if (ai.personality_file && grunt.file.exists(ai.personality_file)) {
+      return ai.personality_file
+    }
 
     path = ai.path + '/../../ui/main/game/new_game/js/ai.js'
     if (grunt.file.exists(path)) return path

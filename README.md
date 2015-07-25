@@ -6,7 +6,7 @@ Mashup multiple AI configs so they can be played at the same time.
 
 ais.json file specifies paths and attributes for each AI.  The example configuration assumes the copy:vanilla task is run to make a local copy of the base AI, and custom AIs are in `server_mods`.
 
-Tasks which copy or use files from the base game need a path to the media directory.  There are some rough rules that try to guess this path, but the `media` variable may need to be overriden with an explicit path.  `%media%` in ai config `path` and `base_path` will be replaced with the gruntfile's media directory.
+Tasks which copy or use files from the base game need a path to the media directory.  There are some rough rules that try to guess this path, but the `media` variable may need to be overriden with an explicit path.  `%media%` in ai config `path`, `base_path`, and `personality_file` will be replaced with the gruntfile's media directory.
 
 Because default tasks are specialized, AIs must be complete.  If you rely on AI files from the base game, point the `base_path`attribute at the base AI.
 
@@ -41,7 +41,7 @@ Example config depends on media directory for vanilla AI files
 - `ai_unit_map` - Copy and rename `unit_maps`
 - `platoon_templates` - Rename rules and copy files
 - `builds` - Rename builds and copy files
-- `personalities` - Look for personality shadows in AI mods, and build a `new_game` scene mod (requires PAMM to load)
+- `personalities` - Look for `personality_file`, personality shadows in AI mods, or default ai.js, and build a `new_game` scene mod (requires PAMM to load)
 - `build` - above tasks
 
 - `copy:mod` - copy the mod files into `server_mods`

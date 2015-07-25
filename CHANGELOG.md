@@ -3,8 +3,9 @@
 - No longer generate commander files
 - Generate personality tag rules instead of unittype rules.
 - New property `personality_tag`, defaults to `name`
-- Add `personality_tags` to already processed personalities
-- %media% in `path` and `base_path` will be replaced with the gruntfile media path
+- New property `personality_file`, defaults to ai.js in mod or media
+- Always attempts to create personalities with `personality_tags`
+- %media% in `path` and `base_path`, and `personality_file` will be replaced with the gruntfile media path
 
 ## 0.4.0
 

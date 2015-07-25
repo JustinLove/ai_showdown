@@ -11,6 +11,7 @@
     {
       "name": "Queller",
       "path": "../../server_mods/com.pa.quitch.qQuellerAI/pa/ai",
+      "personality_file": "../../mods/com.pa.quitch.qQuellerAIPersonalities/ui/main/game/new_game/js/ai.js",
       "rule_postfix": "_Queller",
       "directory": "Queller",
       "name_prefix": "Queller - "
