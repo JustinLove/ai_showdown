@@ -195,6 +195,9 @@ module.exports = function(grunt) {
 
     path = ai.path + '/../../ui/main/game/new_game/js/ai.js'
     if (grunt.file.exists(path)) return path
+
+    path = media + 'ui/main/game/new_game/js/ai.js'
+    if (grunt.file.exists(path)) return path
   }
 
   var extractPersonalities = function(path) {
