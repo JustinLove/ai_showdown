@@ -1,4 +1,4 @@
-## 0.5.0
+## 1.0.0
 
 - No longer generate commander files
 - Generate personality tag rules instead of unittype rules.
