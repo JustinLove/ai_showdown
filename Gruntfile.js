@@ -187,7 +187,7 @@ module.exports = function(grunt) {
 
   var extractPersonalities = function(path) {
     var text = grunt.file.read(path)
-    var perString = text.match(/({(\s|\n)*'Normal'(.|\r|\n)*});/m)[1]
+    var perString = text.match(/({(\s|\n)*'(Idle|Normal)'(.|\r|\n)*});/m)[1]
     var json = perString.replace(/'/g, '"').replace(/(\w+):/g, '"$1":').replace(/},\r?\n\s+}/, '}}')
     return JSON.parse(json)
   }
