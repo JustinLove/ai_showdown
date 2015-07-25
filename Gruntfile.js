@@ -1,10 +1,10 @@
 var Path = require('path')
-
 var papath = require('./lib/path')
-var media = papath.media('stable')
 
 module.exports = function(grunt) {
   var ais = grunt.file.readJSON('ais.json')
+  var media = ais.media || papath.media('stable')
+
   var options = {
     data: {
       config: ais,

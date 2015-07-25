@@ -6,7 +6,7 @@ Mashup multiple AI configs so they can be played at the same time.
 
 ais.json file specifies paths and attributes for each AI.  The example configuration assumes there is a valid PA media path, and custom AIs are in `server_mods`.
 
-Tasks which copy or use files from the base game need a path to the media directory.  There are some rough rules that try to guess this path, but the `media` variable may need to be overriden with an explicit path.
+Tasks which copy or use files from the base game need a path to the media directory.  There are some rough rules that try to guess this path, but the `media` variable may need to be overriden with an explicit path in ais.json.
 
 Template expansion is performed in `ai_config`, `path`, `base_path`, and `personality_file`.  Principally this would be `<%= media %>` for the game's media path, but it also provides the ai `config` object and the current `ai`
 

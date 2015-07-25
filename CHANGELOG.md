@@ -6,6 +6,7 @@
 - New property `personality_file`, defaults to ai.js in mod or media
 - Always attempts to create personalities with `personality_tags`
 - Template expansion in `ai_config`, `path`, `base_path`, and `personality_file`, primarily for `<%= media %>`
+- media path can now be overriden in the ai config file
 
 ## 0.4.0
 
