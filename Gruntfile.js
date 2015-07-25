@@ -5,14 +5,15 @@ var media = papath.media('stable')
 
 module.exports = function(grunt) {
   var ais = grunt.file.readJSON('ais.json')
-  ais.ais.forEach(function(ai) {
-    var options = {
-      data: {
-        config: ais,
-        ai: ai,
-        media: media,
-      }
+  var options = {
+    data: {
+      config: ais,
+      media: media,
     }
+  }
+  ais.ai_config = grunt.template.process(ais.ai_config, options)
+  ais.ais.forEach(function(ai) {
+    options.data.ai = ai
     ai.path = grunt.template.process(ai.path, options)
     if (ai.base_path) {
       ai.base_path = grunt.template.process(ai.base_path, options)

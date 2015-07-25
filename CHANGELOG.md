@@ -5,7 +5,7 @@
 - New property `personality_tag`, defaults to `name`
 - New property `personality_file`, defaults to ai.js in mod or media
 - Always attempts to create personalities with `personality_tags`
-- Template expansion in `path`, `base_path`, and `personality_file`, primarily for `<%= media %>`
+- Template expansion in `ai_config`, `path`, `base_path`, and `personality_file`, primarily for `<%= media %>`
 
 ## 0.4.0
 
@@ -14,7 +14,7 @@
 
 ## 0.3.1
 
-- simple `ai_unit_map` no longer exists in windows verion, media check with `ai_config` instead
+- simple `ai_unit_map` no longer exists in windows version, media check with `ai_config` instead
 
 ## 0.3.0
 
