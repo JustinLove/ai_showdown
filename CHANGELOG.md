@@ -4,6 +4,7 @@
 - Generate personality tag rules instead of unittype rules.
 - New property `personality_tag`, defaults to `name`
 - Add `personality_tags` to already processed personalities
+- %media% in `path` and `base_path` will be replaced with the gruntfile media path
 
 ## 0.4.0
 

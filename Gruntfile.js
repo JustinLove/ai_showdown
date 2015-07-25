@@ -2,10 +2,15 @@ var Path = require('path')
 
 var papath = require('./lib/path')
 var media = papath.media('stable')
-var target = papath.media('hack')
 
 module.exports = function(grunt) {
   var ais = grunt.file.readJSON('ais.json')
+  ais.ais.forEach(function(ai) {
+    ai.path = ai.path.replace('%media%', media)
+    if (ai.base_path) {
+      ai.base_path = ai.base_path.replace('%media%', media)
+    }
+  })
   var identifier = 'com.wondible.pa.ai_showdown.' + ais.ais.map(function(ai) {return ai.rule_postfix}).join('')
   var modPath = '../../server_mods/' + identifier + '/'
 
