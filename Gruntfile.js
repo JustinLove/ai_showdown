@@ -108,7 +108,7 @@ module.exports = function(grunt) {
       console.log("media path appears to be pointing at a copy of PA")
       console.log(media)
     } else {
-      console.log("Could not find AI files at the current media path.  Please edit `var media =` at the top of `Gruntfile.js`")
+      console.log("Could not find AI files at the current media path.  Please set `media` in `ais.json`")
       console.log(media)
     }
   })
