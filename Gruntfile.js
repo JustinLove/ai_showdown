@@ -169,9 +169,9 @@ module.exports = function(grunt) {
       }
       rule.build_conditions.forEach(function(cond) {
         cond.unshift({
-          "boolean": true, 
+          "test_type": "HasPersonalityTag",
           "string0": ai.personality_tag || ai.name,
-          "test_type": "HasPersonalityTag"
+          "boolean": true, 
         })
       })
     })
