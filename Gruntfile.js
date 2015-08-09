@@ -22,7 +22,11 @@ module.exports = function(grunt) {
       ai.personality_file = grunt.template.process(ai.personality_file, options)
     }
   })
-  var identifier = 'com.wondible.pa.ai_showdown.' + ais.ais.map(function(ai) {return ai.rule_postfix}).join('')
+  var identifier = [
+    'com.wondible.pa.ai_showdown',
+    ais.ais.map(function(ai) {return ai.rule_postfix}).join(''),
+  ].filter(function(s) {return s && s != ''}).join('.')
+  console.log(identifier)
   var modPath = (ais.server_mods || '../../server_mods') + '/' + identifier + '/'
 
   // Project configuration.

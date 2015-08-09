@@ -1,3 +1,7 @@
+## 1.0.1
+
+- Do not generate a trailing dot identifier if there are no `rule_postfix` strings
+
 ## 1.0.0
 
 - No longer generate commander files
