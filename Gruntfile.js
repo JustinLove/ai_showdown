@@ -22,10 +22,15 @@ module.exports = function(grunt) {
       ai.personality_file = grunt.template.process(ai.personality_file, options)
     }
   })
-  var identifier = [
-    'com.wondible.pa.ai_showdown',
-    ais.ais.map(function(ai) {return ai.rule_postfix}).join(''),
-  ].filter(function(s) {return s && s != ''}).join('.')
+  var identifier
+  if (ais.identifier) {
+    identifier = ais.identifier
+  } else {
+    identifier = [
+      ais.base_identifier || 'com.wondible.pa.ai_showdown',
+      ais.ais.map(function(ai) {return ai.rule_postfix}).join(''),
+    ].filter(function(s) {return s && s != ''}).join('.')
+  }
   console.log(identifier)
   var modPath = (ais.server_mods || '../../server_mods') + '/' + identifier + '/'
 

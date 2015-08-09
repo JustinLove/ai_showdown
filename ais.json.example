@@ -3,6 +3,8 @@
   "xinactivex media": "/Users/jlove/Library/Application Support/Uber Entertainment/Planetary Annihilation/data/streams/stable/PA.app/Contents/Resources/media/",
   "client_mods": "../../mods",
   "server_mods": "../../server_mods",
+  "xinactivex identifier": "com.wondible.pa.ai_showdown",
+  "base_identifier": "com.wondible.pa.ai_showdown",
   "ais": [
     {
       "name": "Vanilla (Default)",

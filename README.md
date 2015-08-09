@@ -14,6 +14,8 @@ Because default tasks are specialized, AIs must be complete.  If you rely on AI 
 
 If you are not using the default AI, you must take care to prevent interference from un-specialized rules. Either include the default AI and don't use it matches, or ensure that one of the included AIs has a blank `directory` and shadows all default file names.
 
+Identifier override: ais.json `identifier` simply sets the mod identifier.  `base_identifier` is similar, but will be extended with the ai `rule_postfix` entries before being used.
+
 ## Running
 
 ### Quick Start
@@ -32,7 +34,7 @@ Uses on [Node](https://nodejs.org/) with NPM and the [Grunt](http://gruntjs.com/
 
 `package.json` lists dependencies, but you'll need to run `npm install` to download them.
 
-PA will upload **all files** in the mod directory, including `node_modules` and maybe even `.git` - you probably don't want to use this in `server_mods` directly, unless you really like waiting.  The template is set up run to run as a project within a peer directory of `server_mods` - I use `server_mods_dev/mod_name`.  The task `grunt copy:mod` will copy the mod files to `../../server_mods/identifier`, you can change the `modPath` in the Gruntfile if you want to run it from somewhere else.
+PA will upload **all files** in the mod directory, including `node_modules` and maybe even `.git` - you probably don't want to use this in `server_mods` directly, unless you really like waiting.  The template is set up run to run as a project within a peer directory of `server_mods` - I use `server_mods_dev/mod_name`.  The task `grunt copy:mod` will copy the mod files to `../../server_mods/identifier`, you can change `server_mods` in ais.json if you want to run it from somewhere else.
 
 ### Available Tasks
 

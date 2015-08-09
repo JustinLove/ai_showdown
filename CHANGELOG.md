@@ -1,6 +1,7 @@
-## 1.0.1
+## 1.1.0
 
 - Do not generate a trailing dot identifier if there are no `rule_postfix` strings
+- ais.json now supports `identifier` and `base_identifier`
 
 ## 1.0.0
 
