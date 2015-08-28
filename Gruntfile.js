@@ -210,7 +210,10 @@ module.exports = function(grunt) {
   var extractPersonalities = function(path) {
     var text = grunt.file.read(path)
     var perString = text.match(/({(\s|\n)*'(Idle|Normal)'(.|\r|\n)*});/m)[1]
-    var json = perString.replace(/'/g, '"').replace(/(\w+):/g, '"$1":').replace(/},\r?\n\s+}/, '}}')
+    var json = perString
+      .replace(/'/g, '"')
+      .replace(/\s(\w+):/g, '"$1":')
+      .replace(/},\r?\n\s+}/, '}}')
     return JSON.parse(json)
   }
 
@@ -223,6 +226,7 @@ module.exports = function(grunt) {
         Object.keys(mod).forEach(function(personality) {
           var name = ai.name_prefix + personality
           mod[personality].name = name
+          mod[personality].display_name = name
           mod[personality].personality_tags = mod[personality].personality_tags || []
           mod[personality].personality_tags.push(ai.personality_tag || ai.name)
           out[name] = mod[personality]

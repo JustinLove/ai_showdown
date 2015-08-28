@@ -1,6 +1,8 @@
 ## 1.2.0
 
 - No longer processes `ai_config`, which appears in personality
+- Update personality format to handle LOC tags and `display_name`
+- Personality list no longer observable
 
 ## 1.1.0
 
