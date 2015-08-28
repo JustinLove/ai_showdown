@@ -3,6 +3,7 @@
 - No longer processes `ai_config`, which appears in personality
 - Update personality format to handle LOC tags and `display_name`
 - Personality list no longer observable
+- `base_path` can be an array (e.g. `pa_ex1`)
 
 ## 1.1.0
 

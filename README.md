@@ -10,7 +10,7 @@ Tasks which copy or use files from the base game need a path to the media direct
 
 Template expansion is performed in `path`, `base_path`, and `personality_file`.  Principally this would be `<%= media %>` for the game's media path, but it also provides the ai `config` object and the current `ai`
 
-Because default tasks are specialized, AIs must be complete.  If you rely on AI files from the base game, point the `base_path`attribute at the base AI.
+Because default tasks are specialized, AIs must be complete.  If you rely on AI files from the base game, point the `base_path` attribute at the base AI.  `base_path` can be an array to include `pa_ex1`.
 
 If you are not using the default AI, you must take care to prevent interference from un-specialized rules. Either include the default AI and don't use it matches, or ensure that one of the included AIs has a blank `directory` and shadows all default file names.
 

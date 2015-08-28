@@ -23,7 +23,10 @@
     {
       "name": "s03g",
       "path": "<%= config.server_mods %>/com.s03g.AI/pa/ai",
-      "base_path": "<%= media %>/pa/ai",
+      "base_path": [
+        "<%= media %>/pa/ai",
+        "<%= media %>/pa_ex1/ai"
+      ],
       "rule_postfix": "_s03g",
       "directory": "s03g",
       "name_prefix": "s03g - "

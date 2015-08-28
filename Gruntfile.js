@@ -15,8 +15,16 @@ module.exports = function(grunt) {
     options.data.ai = ai
     ai.path = grunt.template.process(ai.path, options)
     if (ai.base_path) {
-      ai.base_path = grunt.template.process(ai.base_path, options)
+      if (!Array.isArray(ai.base_path)) {
+        ai.base_path = [ai.base_path]
+      }
+      ai.base_path = ai.base_path.map(function(path) {
+        return grunt.template.process(path, options)
+      })
+    } else {
+      ai.base_path = []
     }
+    console.log(ai.base_path)
     if (ai.personality_file) {
       ai.personality_file = grunt.template.process(ai.personality_file, options)
     }
@@ -117,9 +125,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('ai_unit_map', 'Copy and rename unit maps', function() {
     ais.ais.forEach(function(ai) {
-      if (ai.base_path) {
-        processMaps(ai.base_path, ai)
-      }
+      ai.base_path.forEach(function(base_path) {
+        processMaps(base_path, ai)
+      })
       processMaps(ai.path, ai)
     })
   })
@@ -145,9 +153,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('platoon_templates', 'Rename templates and copy files', function() {
     ais.ais.forEach(function(ai) {
-      if (ai.base_path) {
-        processPlatoons(ai.base_path, ai)
-      }
+      ai.base_path.forEach(function(base_path) {
+        processPlatoons(base_path, ai)
+      })
       processPlatoons(ai.path, ai)
     })
   })
@@ -186,9 +194,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('builds', 'Rename builds and copy files', function() {
     ais.ais.forEach(function(ai) {
-      if (ai.base_path) {
-        processBuilds(ai.base_path, ai)
-      }
+      ai.base_path.forEach(function(base_path) {
+        processBuilds(base_path, ai)
+      })
       processBuilds(ai.path, ai)
     })
   })
