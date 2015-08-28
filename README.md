@@ -8,7 +8,7 @@ ais.json file specifies paths and attributes for each AI.  The example configura
 
 Tasks which copy or use files from the base game need a path to the media directory.  There are some rough rules that try to guess this path, but the `media` variable may need to be overriden with an explicit path in ais.json.
 
-Template expansion is performed in `ai_config`, `path`, `base_path`, and `personality_file`.  Principally this would be `<%= media %>` for the game's media path, but it also provides the ai `config` object and the current `ai`
+Template expansion is performed in `path`, `base_path`, and `personality_file`.  Principally this would be `<%= media %>` for the game's media path, but it also provides the ai `config` object and the current `ai`
 
 Because default tasks are specialized, AIs must be complete.  If you rely on AI files from the base game, point the `base_path`attribute at the base AI.
 
@@ -40,8 +40,6 @@ PA will upload **all files** in the mod directory, including `node_modules` and 
 
 Example config depends on media directory for vanilla AI files
 
-- `copy:ai_configs` - copy the all `ai_config.json` to separate files
-- `copy:ai_config` - copy the specified `ai_config.json`
 - `ai_unit_map` - Copy and rename `unit_maps`
 - `platoon_templates` - Rename rules and copy files
 - `builds` - Rename builds and copy files

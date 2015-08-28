@@ -11,7 +11,6 @@ module.exports = function(grunt) {
       media: media,
     }
   }
-  ais.ai_config = grunt.template.process(ais.ai_config, options)
   ais.ais.forEach(function(ai) {
     options.data.ai = ai
     ai.path = grunt.template.process(ai.path, options)
@@ -37,22 +36,6 @@ module.exports = function(grunt) {
   // Project configuration.
   var config = {
     copy: {
-      ai_config: {
-        files: [
-          {
-            src: ais.ai_config,
-            dest: 'pa/ai/ai_config.json',
-          },
-        ],
-      },
-      ai_configs: {
-        files: ais.ais.map(function(ai) {
-          return {
-            src: ai.path + '/ai_config.json',
-            dest: 'pa/ai/ai_config' + ai.rule_postfix + '.json',
-          }
-        })
-      },
       mod: {
         files: [
           {
@@ -253,8 +236,6 @@ module.exports = function(grunt) {
   })
 
   grunt.registerTask('build', [
-    'copy:ai_configs',
-    'copy:ai_config',
     'ai_unit_map',
     'platoon_templates',
     'builds',

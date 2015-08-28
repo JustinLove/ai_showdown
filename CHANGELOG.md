@@ -1,3 +1,7 @@
+## 1.2.0
+
+- No longer processes `ai_config`, which appears in personality
+
 ## 1.1.0
 
 - Do not generate a trailing dot identifier if there are no `rule_postfix` strings
