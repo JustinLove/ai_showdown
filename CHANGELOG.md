@@ -1,3 +1,7 @@
+## 1.3.0
+
+- Add steamapps/common/Planetary Annihilation Titans to search paths
+
 ## 1.2.0
 
 - No longer processes `ai_config`, which appears in personality
